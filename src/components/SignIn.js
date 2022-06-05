@@ -49,7 +49,7 @@ export default function SignIn({ setName }) {
   const classes = useStyles();
   const [disabled, setDisabled] = useState(true);
   const [string, setString] = useState("");
-  console.log({ string });
+  const [isComposed, setIsComposed] = useState(false);
 
   // 条件付けで発火させる
   // 何か変化があった際に第一引数にある処理を実行する
@@ -77,6 +77,20 @@ export default function SignIn({ setName }) {
             name="name"
             autoFocus
             onChange={(e) => setString(e.target.value)}
+            // ↓押したキーが何かを判断
+            // Enterを押したタイミングでバリューを設定
+            onKeyDown={(e) => {
+              // ↓isComposedがtrueであれば処理を行わない
+              if (isComposed) return;
+
+              if (e.key === "Enter") {
+                setName(e.target.value);
+                e.preventDefault();
+              }
+            }}
+            // ↓日本語入力の際に変換の決定のEnterで処理を進めない
+            onCompositionStart={() => setIsComposed(true)}
+            onCompositionEnd={() => setIsComposed(false)}
           />
 
           <Button
