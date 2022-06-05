@@ -24,7 +24,7 @@ firebase.initializeApp(firebaseConfig);
 // ↓このデータベースはリアルタイムデータべースをまるっと参照してる
 const database = firebase.database();
 // ↓特定のリファレンスを作る
-const messagesRef = database.ref("messages");
+export const messagesRef = database.ref("messages");
 
 // ↓firebase.jsの中では実行しない、エクスポートしてイベントが起こった際に引き出させる
 export const pushMessage = ({ name, text }) => {
