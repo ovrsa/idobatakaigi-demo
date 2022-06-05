@@ -77,6 +77,13 @@ export default function SignIn({ setName }) {
             name="name"
             autoFocus
             onChange={(e) => setString(e.target.value)}
+            // ↓押したキーが何かを判断
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setName(e.target.value);
+                e.preventDefault();
+              }
+            }}
           />
 
           <Button
