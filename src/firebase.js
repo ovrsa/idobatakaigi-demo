@@ -14,10 +14,10 @@ firebase.initializeApp(firebaseConfig);
 // ↓このデータベースはリアルタイムデータべースをまるっと参照してる
 const database = firebase.database();
 // ↓特定のリファレンスを作る
-const messageRef = database.ref("messages");
+const messagesRef = database.ref("messages");
 
 // ↓firebase.jsの中では実行しない、エクスポートしてイベントが起こった際に引き出させる
 export const pushMessage = ({ name, text }) => {
   // ↓必要なデータは名前とテキストなのでオブジェクトに渡す
-  messageRef.push({ name, text });
+  messagesRef.push({ name, text });
 };
