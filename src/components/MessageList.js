@@ -39,14 +39,21 @@ const MessageList = () => {
       });
   }, []);
 
+  const length = messages.length;
+
   return (
     // ↓Messageを画面に描画させる
     <List className={classes.root}>
-      {messages.map(({ key, name, text }) => {
+      {messages.map(({ key, name, text }, index) => {
+        const isLastItem = length === index.length + 1;
+
         return (
-          <MessageItem key={key} name={name} text={text}>
-            item
-          </MessageItem>
+          <MessageItem
+            key={key}
+            name={name}
+            text={text}
+            isLastItem={isLastItem}
+          />
         );
       })}
     </List>
